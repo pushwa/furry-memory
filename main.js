@@ -1,27 +1,29 @@
-//
-const imgWrapper = document.getElementById('imgWrapper');
-
-const img = value => {
+const srcArray = indexNumber => {
   const arr = [];
-  for (let i = 0; i <= value; i++) {
+  for (let i = 0; i <= indexNumber; i++) {
     arr.push(`images/${i}.png`);
   }
-
   return arr;
 };
 
-const mkImage = (amount, current) => {
-  const imgSrc = [...img(amount)];
-  const el = document.createElement('img');
-  el.src = imgSrc[current];
-  el.alt = imgSrc[current];
-  return imgWrapper.appendChild(el);
+const makeTumb = (indexNumber, currentIndexNumber) => {
+  const imgWrapper = document.getElementById('imgWrapper');
+  const newSrcArray = [...srcArray(indexNumber)];
+  const img = document.createElement('img');
+  img.src = newSrcArray[currentIndexNumber];
+  img.alt = newSrcArray[currentIndexNumber];
+
+  img.addEventListener('load', () => {
+    return img.classList.add('fadeIn');
+  });
+
+  return imgWrapper.appendChild(img);
 };
 
-const tumbs = amount => {
-  for (let i = 0; i < amount; i++) {
-    mkImage(amount, i);
+const makeImgTumbs = total => {
+  for (let i = 0; i < total; i++) {
+    makeTumb(total, i);
   }
 };
 
-tumbs(10);
+makeImgTumbs(5);
