@@ -12,12 +12,11 @@ const makeTumb = (indexNumber, currentIndexNumber) => {
   const img = document.createElement('img');
   img.src = newSrcArray[currentIndexNumber];
   img.alt = newSrcArray[currentIndexNumber];
+  imgWrapper.appendChild(img);
 
   img.addEventListener('load', () => {
-    return img.classList.add('fadeIn');
+    img.classList.add('fadeIn');
   });
-
-  return imgWrapper.appendChild(img);
 };
 
 const makeImgTumbs = total => {
